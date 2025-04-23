@@ -11,21 +11,24 @@ import Loader from "./components/common/Loader/Loader";
 
 export default function Home() {
   const [allTeams, setAllTeams] = useState<ITeams[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getCachedTeams = async () => {
       try {
         const result = await getCachedData("teams");
         setAllTeams(result?.response || []);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching teams:", error);
+        setLoading(false);
       }
     };
 
     getCachedTeams();
   }, []);
 
-  if (!allTeams.length) {
+  if (loading) {
     return <Loader />;
   }
 

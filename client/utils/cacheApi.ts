@@ -13,7 +13,7 @@ export const getCachedOrFreshData = async (key: string, url: string) => {
       },
     });
     const version = response.headers['x-rapidapi-version'];
-    const data = response.data;
+    const data = response?.data;
 
     if (!cached || cached.version !== version) {
       console.log("Fetched fresh data");
