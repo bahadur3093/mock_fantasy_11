@@ -8,7 +8,7 @@ interface PlayerCardProps {
 export default function PlayerCard({ player }: PlayerCardProps) {
   return (
     <Link
-      href={{ pathname: `/players`, query: { playerId: player.id } }}
+      href={`/players/${player.id}`}
       className="border-2 rounded p-2 my-2 flex items-center"
     >
       <div className="flex flex-col">

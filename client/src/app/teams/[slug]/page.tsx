@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
 import { rapidBaseUrl } from "../../../../utils/utl";
@@ -31,10 +31,12 @@ export default function TeamDetails() {
   }, [params]);
 
   return (
-    <div className="grid grid-cols-4 gap-4 mb-4">
-      {playersList.map((player) => (
-        <PlayerCard key={`player-${player.id}`} player={player} />
-      ))}
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="grid grid-cols-4 gap-4 mb-4">
+        {playersList.map((player) => (
+          <PlayerCard key={`player-${player.id}`} player={player} />
+        ))}
+      </div>
+    </Suspense>
   );
 }
