@@ -21,8 +21,8 @@ export default function SearchBar() {
           },
         }
       );
-      if (result.data.response.length) {
-        setPlayers(result.data.response);
+      if (result?.data?.response.length) {
+        setPlayers(result?.data?.response);
       } else {
         setPlayers([]);
       }
