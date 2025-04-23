@@ -28,3 +28,20 @@ export const getCachedOrFreshData = async (key: string, url: string) => {
     return cached?.data || null;
   }
 };
+
+
+export const getCachedData = async (key: string) => {
+    const db = await getDB();
+    const cached = await db.get("api-cache", key);
+  
+    try {
+      console.log("Using cached data");
+      return cached.data;
+    } catch (err) {
+      console.warn("API failed, falling back to cache", err);
+      return cached?.data || null;
+    }
+  };
+  
+  
+  

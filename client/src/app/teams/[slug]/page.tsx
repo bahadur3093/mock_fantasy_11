@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import { rapidBaseUrl } from "../../../../utils/utl";
 import { getCachedOrFreshData } from "../../../../utils/cacheApi";
 import { Player } from "../../../../models/Player.model";
-import PlayerCard from "@/app/components/cards/PlayerCard/PlayerCars";
+import PlayerCard from "@/app/components/cards/PlayerCard/PlayerCard";
 
 export default function TeamDetails() {
   const params = useParams();

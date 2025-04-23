@@ -7,7 +7,7 @@ import { getCachedOrFreshData } from "../../../../utils/cacheApi";
 import { Player } from "../../../../models/Player.model";
 import PlayerDetailsCard from "@/app/components/cards/PlayerDetailsCard/PlayerDetailsCard";
 import { useParams } from "next/navigation";
-
+import Loader from "@/app/components/common/Loader/Loader";
 
 export default function PlayersDetails() {
   const { playerId } = useParams();
@@ -26,7 +26,6 @@ export default function PlayersDetails() {
             (result?.response as unknown as Player[]).find(
               (player) => player.id.toString() === playerId
             );
-          console.log("Player details", filteredData);
           setPlayerDetails(filteredData || null);
         } catch (error) {
           console.error("Error fetching player details:", error);
@@ -35,13 +34,11 @@ export default function PlayersDetails() {
 
       getPlayerDetails();
     }
-  }, []);
+  }, [playerId]);
 
   if (!playerDetails) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        Loading...
-      </div>
+      <Loader />
     );
   }
 

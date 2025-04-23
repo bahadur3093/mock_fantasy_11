@@ -1,68 +1,42 @@
 "use client";
 
-import axios from "axios";
-import { debounce } from "lodash";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { rapidBaseUrl } from "../../utils/utl";
-import { Player } from "../../models/Player.model";
+import { getCachedData } from "../../utils/cacheApi";
+import { ITeams } from "../../models/Teams.model";
+import TeamWrapper from "./components/cards/TeamsWrapper/TeamsWrapper";
+import HeadingTitle from "./components/common/HeadingTitle/HeadingTitle";
+import SearchBar from "./components/common/SearchBar/SearchBar";
+import Loader from "./components/common/Loader/Loader";
 
 export default function Home() {
-  const [players, setPlayers] = useState<Player[]>([]);
-
-  const debouncedChangeHandler = useMemo(
-    () =>
-      debounce((value: string) => {
-        if (value.length) {
-          getPlayersByName(value);
-        }
-      }, 500),
-    []
-  );
+  const [allTeams, setAllTeams] = useState<ITeams[]>([]);
 
   useEffect(() => {
-    return () => {
-      debouncedChangeHandler.cancel();
-    };
-  }, [debouncedChangeHandler]);
-
-  const getPlayersByName = async (value: string) => {
-    try {
-      const result = await axios.get(`${rapidBaseUrl.searchPlayersDetails}${value}`, {
-        headers: {
-          "x-rapidapi-key":
-            "90845d6062msh1bd8c7755c03cb9p134c77jsn26ca06c37106",
-          "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
-        },
-      });
-      if (result.data.response.length) {
-        setPlayers(result.data.response);
-      } else{
-        setPlayers([]);
+    const getCachedTeams = async () => {
+      try {
+        const result = await getCachedData("teams");
+        setAllTeams(result?.response || []);
+      } catch (error) {
+        console.error("Error fetching teams:", error);
       }
-    } catch {
-      console.log("Error fetching players");
-    }
-  };
+    };
+
+    getCachedTeams();
+  }, []);
+
+  if (!allTeams.length) {
+    return <Loader />;
+  }
 
   return (
-    <main className="p-5">
-      <h1>Home Page</h1>
-      <input
-        className="border-2 rounded"
-        type="text"
-        onChange={(e) => {
-          debouncedChangeHandler(e.target.value);
-        }}
-      />
+    <main className="pt-15">
+      <SearchBar />
       <div>
-        {players.map((player) => (
-          <div key={player.id} className="border-2 rounded p-2 my-2">
-            <div>{player.firstname} {player.lastname}</div>
-            {player.affiliation && <div>{player.affiliation}</div>}
-            <div>{player.birth.date} - {player.birth.country}</div>
-          </div>
-        ))}
+        <HeadingTitle size="xl" classes="mb-4">
+          All teams ({allTeams.length})
+        </HeadingTitle>
+        <TeamWrapper teams={allTeams} />
       </div>
     </main>
   );
