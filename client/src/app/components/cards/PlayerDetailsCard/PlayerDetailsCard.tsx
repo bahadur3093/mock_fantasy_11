@@ -1,6 +1,9 @@
 import Image from "next/image";
 
 import { Player } from "../../../../../models/Player.model";
+import { useGlobalData } from "../../common/GlobalContext/GlobalDataContext";
+import HeadingTitle from "../../common/HeadingTitle/HeadingTitle";
+import PlayerStats from "../PlayerStats/PlayerStats";
 interface PlayerDetailsCardProps {
   playerDetails: Player;
 }
@@ -8,21 +11,27 @@ interface PlayerDetailsCardProps {
 export default function PlayerDetailsCard({
   playerDetails,
 }: PlayerDetailsCardProps) {
-  return (
-    <div className=" mx-auto">
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-6 tracking-tight">
-        Player Profile
-      </h1>
+  const { currentSelectedPlayer } = useGlobalData();
+  console.log("currentSelectedPlayer", currentSelectedPlayer);
 
-      <div className="bg-white rounded-2xl shadow-md overflow-hidden grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white flex items-center justify-center p-4">
+  return (
+    <div className="mx-auto">
+      <HeadingTitle
+        size="lg"
+        classes="font-extrabold text-gray-800 mb-2 tracking-tight"
+      >
+        Player Profile
+      </HeadingTitle>
+
+      <div className="bg-gradient-to-br from-white via-gray-100 to-gray-200 rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center p-4">
           <Image
             src={"/images/player-placeholder.jpg"}
             alt={playerDetails.firstname}
             width={500}
             height={500}
             onError={() => "/images/player-placeholder.png"}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full rounded-lg shadow-md"
           />
         </div>
 
@@ -31,7 +40,7 @@ export default function PlayerDetailsCard({
             <h2 className="text-2xl font-bold text-gray-800">
               {playerDetails.firstname} {playerDetails.lastname}
             </h2>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-600 text-sm">
               #{playerDetails.leagues.standard?.jersey} •{" "}
               {playerDetails.leagues.standard?.pos} • Team
             </p>
@@ -90,6 +99,20 @@ export default function PlayerDetailsCard({
           </div>
         </div>
       </div>
+
+      {/* Player Stats section */}
+      <HeadingTitle
+        size="lg"
+        classes="mt-6 font-extrabold text-gray-800 mb-2 tracking-tight"
+      >
+        Player Stats
+      </HeadingTitle>
+      {currentSelectedPlayer && (
+        <PlayerStats
+          playerId={currentSelectedPlayer?.id}
+          playerData={currentSelectedPlayer}
+        />
+      )}
     </div>
   );
 }

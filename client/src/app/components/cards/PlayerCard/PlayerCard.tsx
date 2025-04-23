@@ -1,14 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Player } from "../../../../../models/Player.model";
+import { useGlobalData } from "../../common/GlobalContext/GlobalDataContext";
 
 interface PlayerCardProps {
   player: Player;
 }
 
 export default function PlayerCard({ player }: PlayerCardProps) {
+  const { setCurrentSelectedPlayer } = useGlobalData();
+
   return (
-    <Link href={`/players/${player.id}`}>
+    <Link
+      href={`/players/${player.id}`}
+      onClick={() => setCurrentSelectedPlayer(player)}
+    >
       <div className="max-w-xs h-full w-full bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
         <div className="h-48 bg-white flex items-center justify-center">
           <Image
@@ -26,17 +32,19 @@ export default function PlayerCard({ player }: PlayerCardProps) {
             {player.firstname} {player.lastname}
           </h2>
           <p className="text-sm text-gray-500 mb-2">
-            #{player.leagues.standard?.jersey} • {player.leagues.standard?.pos} •
-            Team
+            #{player.leagues.standard?.jersey} • {player.leagues.standard?.pos}{" "}
+            • Team
           </p>
 
           <div className="text-sm text-gray-700 mb-2">
             <p>
-              <span className="font-medium">Height:</span> {player.height.feets}&apos;{player.height.inches}&quot; / {player.height.meters} m
+              <span className="font-medium">Height:</span> {player.height.feets}
+              &apos;{player.height.inches}&quot; / {player.height.meters} m
             </p>
             <p>
               <span className="font-medium">Weight:</span>{" "}
-              {player.weight.pounds || "-"} lbs / {player.weight.kilograms || "-"} kg
+              {player.weight.pounds || "-"} lbs /{" "}
+              {player.weight.kilograms || "-"} kg
             </p>
           </div>
 

@@ -10,4 +10,6 @@ export const rapidBaseUrl = {
     getPlayersDetails: `${RAPID_API_BASE_URL}/players?id=`,
     searchTeams: `${RAPID_API_BASE_URL}/teams`,
     getPlayersByYear: `${RAPID_API_BASE_URL}/players`,
+    getTeamStats: `${RAPID_API_BASE_URL}/teams/statistics`,
+    getPlayerStats: `${RAPID_API_BASE_URL}/players/statistics`,
 }
