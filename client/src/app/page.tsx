@@ -6,7 +6,6 @@ import { getCachedData } from "../../utils/cacheApi";
 import { ITeams } from "../../models/Teams.model";
 import TeamWrapper from "./components/cards/TeamsWrapper/TeamsWrapper";
 import HeadingTitle from "./components/common/HeadingTitle/HeadingTitle";
-import SearchBar from "./components/common/SearchBar/SearchBar";
 import Loader from "./components/common/Loader/Loader";
 
 export default function Home() {
@@ -33,8 +32,7 @@ export default function Home() {
   }
 
   return (
-    <main className="pt-15">
-      <SearchBar />
+    <main>
       <div>
         <HeadingTitle size="xl" classes="mb-4">
           All teams ({allTeams.length})

@@ -16,5 +16,5 @@ enum HeadingTitleSize {
 }
 
 export default function HeadingTitle({ size, children, classes, isSeperator = false }: IHeadingTitleProps) {
-  return <div className={`font-extrabold text-gray-800 mb-4 tracking-tight ${HeadingTitleSize[size]} ${classes} ${isSeperator ? 'border-b-2' : ''}`}>{children}</div>;
+  return <div className={`font-extrabold text-gray-800  tracking-tight ${HeadingTitleSize[size]} ${classes} ${isSeperator ? 'border-b-2' : ''}`}>{children}</div>;
 }

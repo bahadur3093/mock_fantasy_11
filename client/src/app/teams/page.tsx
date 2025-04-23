@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { rapidBaseUrl } from "../../../utils/utl";
+import { rapidBaseUrl } from "../../../utils/urls";
 import { getCachedOrFreshData } from "../../../utils/cacheApi";
 import { ITeams } from "../../../models/Teams.model";
 import HeadingTitle from "../components/common/HeadingTitle/HeadingTitle";

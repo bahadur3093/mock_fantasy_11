@@ -1,13 +1,16 @@
-import axios from "axios";
+"use client";
+
 import { debounce } from "lodash";
 import { useEffect, useMemo, useState } from "react";
-
-import { rapidBaseUrl } from "../../../../../utils/utl";
-import { Player } from "../../../../../models/Player.model";
+import axios from "axios";
 import Link from "next/link";
+
+import { rapidBaseUrl } from "../../../../../utils/urls";
+import { Player } from "../../../../../models/Player.model";
 
 export default function SearchBar() {
   const [players, setPlayers] = useState<Player[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getPlayersByName = async (value: string) => {
     try {
@@ -26,8 +29,10 @@ export default function SearchBar() {
       } else {
         setPlayers([]);
       }
+      setLoading(false);
     } catch {
       console.log("Error fetching players");
+      setLoading(false);
     }
   };
 
@@ -48,29 +53,29 @@ export default function SearchBar() {
   }, [debouncedChangeHandler]);
 
   return (
-    <div className="relative w-full mb-4">
+    <div className="relative w-full">
       <input
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="opacity-50 cursor-not-allowed w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="text"
         onChange={(e) => {
           debouncedChangeHandler(e.target.value);
         }}
-        placeholder="Search player by name"
+        placeholder="Search player by name...."
       />
-      {players.length !== 0 && (
+      {!loading && players.length !== 0 && (
         <div className="px-4">
-          <ul className="absolute left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+          <div className="absolute flex flex-col left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
             {players.map((player) => (
-              <li
+              <Link
+                href={`/players/${player.id}`}
                 key={player.id}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="px-4 w-full py-2 hover:bg-gray-100 cursor-pointer"
+                onClick={() => setLoading(true)}
               >
-                <Link href={`/players/${player.id}`}>
-                  {player.firstname} {player.lastname}
-                </Link>
-              </li>
+                {player.firstname} {player.lastname}
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>
