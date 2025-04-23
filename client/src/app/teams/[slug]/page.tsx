@@ -7,6 +7,7 @@ import { rapidBaseUrl } from "../../../../utils/utl";
 import { getCachedOrFreshData } from "../../../../utils/cacheApi";
 import { Player } from "../../../../models/Player.model";
 import PlayerCard from "@/app/components/cards/PlayerCard/PlayerCard";
+import Loader from "@/app/components/common/Loader/Loader";
 
 export default function TeamDetails() {
   const params = useParams();
@@ -31,8 +32,8 @@ export default function TeamDetails() {
   }, [params]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="grid grid-cols-4 gap-4 mb-4">
+    <Suspense fallback={<Loader />}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         {playersList.map((player) => (
           <PlayerCard key={`player-${player.id}`} player={player} />
         ))}
