@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { IPlayerStats, Player } from "../../../../../models/Player.model";
-import { fetchPlayerStatsByYear } from "../../../../../services/PlayerService";
+import { fetchPlayerStatsByYear } from "../../../../../services/Player.service";
 import Loader from "../../common/Loader/Loader";
 import AccordionCard from "../../common/Accordion/Accordion";
 
@@ -11,17 +11,14 @@ interface PlayerStatsProps {
 }
 
 export default function PlayerStats({
-  playerId,
-  playerData,
+  playerId
 }: PlayerStatsProps) {
-  console.log("PlayerStats", playerId, playerData);
   const [playerStats, setPlayerStats] = useState<IPlayerStats[]>([]);
 
   useEffect(() => {
     const getPlayerStatsByYear = async (playerId: number) => {
       try {
         const result = await fetchPlayerStatsByYear(playerId, "2023");
-        console.log("Player stats:", result);
         setPlayerStats(result?.response);
       } catch (error) {
         console.error("Error fetching player stats:", error);

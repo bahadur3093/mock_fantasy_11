@@ -13,7 +13,7 @@ import LineSeperator from "@/app/components/common/Seperator/Seperator";
 import { useGlobalData } from "@/app/components/common/GlobalContext/GlobalDataContext";
 import TeamDetails from "@/app/components/cards/TeamDetails/TeamDetails";
 import DropdownSelect from "@/app/components/common/Dropdown/Dropdown";
-import { getTeamStatsByYear } from "../../../../services/TeamsService";
+import { getTeamStatsByYear } from "../../../../services/Teams.service";
 import { ITeamStatistics } from "../../../../models/Teams.model";
 import { first } from "lodash";
 import TeamStatsCard from "@/app/components/cards/TeamStatsCard/TeamStatsCard";
@@ -77,7 +77,7 @@ export default function TeamsList() {
         Team Details:
       </HeadingTitle>
       {currentSelectedTeam && <TeamDetails teamDetails={currentSelectedTeam} />}
-      <LineSeperator />
+      <LineSeperator classes="my-6" />
       <div className="flex justify-between items-center mb-4">
         <HeadingTitle size="lg">Team Statistics (by year):</HeadingTitle>
         <div className="flex items-center gap-2">
@@ -100,7 +100,7 @@ export default function TeamsList() {
           year={selectedYear}
         />
       )}
-      <LineSeperator />
+      <LineSeperator classes="my-6" />
       <HeadingTitle size="lg" classes="mb-4">
         Current Roaster:
       </HeadingTitle>

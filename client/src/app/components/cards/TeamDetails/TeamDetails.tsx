@@ -8,10 +8,10 @@ interface TeamDetailsProps {
 export default function TeamDetails({ teamDetails }: TeamDetailsProps) {
   return (
     <section className="flex items-center justify-center">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl p-8 md:p-12">
+      <div className="bg-white rounded-2xl shadow-2xl w-full p-8 md:p-12">
         <div className="flex flex-col md:flex-row items-center gap-10">
           {/* Logo and Name */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left min-w-xs">
             <Image
               src={teamDetails.logo}
               alt={teamDetails.name}

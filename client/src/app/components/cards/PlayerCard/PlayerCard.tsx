@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Player } from "../../../../../models/Player.model";
 import { useGlobalData } from "../../common/GlobalContext/GlobalDataContext";
@@ -15,17 +14,11 @@ export default function PlayerCard({ player }: PlayerCardProps) {
       href={`/players/${player.id}`}
       onClick={() => setCurrentSelectedPlayer(player)}
     >
-      <div className="max-w-xs h-full w-full bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-        <div className="h-48 bg-white flex items-center justify-center">
-          <Image
-            src={"/images/player-placeholder.jpg"}
-            alt={player.firstname}
-            width={500}
-            height={500}
-            onError={() => "/images/player-placeholder.png"}
-            className="object-cover w-full h-full"
-          />
-        </div>
+      <div className="max-w-xs h-full w-full border border-gray-100 bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div
+          className="h-60 bg-white flex items-center justify-center bg-contain bg-no-repeat bg-center"
+          style={{ backgroundImage: "url('/images/player-placeholder-1.png')" }}
+        ></div>
 
         <div className="p-4">
           <h2 className="text-xl font-bold text-gray-800">

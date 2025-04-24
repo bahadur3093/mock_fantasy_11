@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-import { getCachedData } from "../../utils/cacheApi";
+import { getCachedOrFreshData } from "../../utils/cacheApi";
 import { ITeams } from "../../models/Teams.model";
 import TeamWrapper from "./components/cards/TeamsWrapper/TeamsWrapper";
 import HeadingTitle from "./components/common/HeadingTitle/HeadingTitle";
 import Loader from "./components/common/Loader/Loader";
+import { rapidBaseUrl } from "../../utils/urls";
 
 export default function Home() {
   const [allTeams, setAllTeams] = useState<ITeams[]>([]);
@@ -15,7 +16,10 @@ export default function Home() {
   useEffect(() => {
     const getCachedTeams = async () => {
       try {
-        const result = await getCachedData("teams");
+        const result = await getCachedOrFreshData(
+          "teams",
+          rapidBaseUrl.searchTeams
+        );
         setAllTeams(result?.response || []);
         setLoading(false);
       } catch (error) {
