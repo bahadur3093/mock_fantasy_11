@@ -31,6 +31,12 @@ export default function PageHeader() {
             >
               Season
             </Link>
+            <Link
+              href="/standings"
+              className="text-lg font-semibold text-gray-800 hover:text-blue-500 transition"
+            >
+              Standing
+            </Link>
           </div>
           <div className="flex items-center">
             <SearchBar />
