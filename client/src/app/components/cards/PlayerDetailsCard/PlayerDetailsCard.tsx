@@ -12,7 +12,6 @@ export default function PlayerDetailsCard({
   playerDetails,
 }: PlayerDetailsCardProps) {
   const { currentSelectedPlayer } = useGlobalData();
-  console.log("currentSelectedPlayer", currentSelectedPlayer);
 
   return (
     <div className="mx-auto">
@@ -26,7 +25,7 @@ export default function PlayerDetailsCard({
       <div className="bg-gradient-to-br from-white via-gray-100 to-gray-200 rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center p-4">
           <Image
-            src={"/images/player-placeholder.jpg"}
+            src={"/images/player-placeholder-1.png"}
             alt={playerDetails.firstname}
             width={500}
             height={500}

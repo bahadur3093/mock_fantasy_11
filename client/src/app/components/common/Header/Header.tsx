@@ -11,13 +11,25 @@ export default function PageHeader() {
               href="/"
               className="text-lg font-semibold text-gray-800 hover:text-blue-500 transition"
             >
-              Home
+              Teams
             </Link>
             <Link
-              href="/teams"
+              href="/players"
               className="text-lg font-semibold text-gray-800 hover:text-blue-500 transition"
             >
-              Teams
+              Players
+            </Link>
+            <Link
+              href="/games"
+              className="text-lg font-semibold text-gray-800 hover:text-blue-500 transition"
+            >
+              Games
+            </Link>
+            <Link
+              href="/season"
+              className="text-lg font-semibold text-gray-800 hover:text-blue-500 transition"
+            >
+              Season
             </Link>
           </div>
           <div className="flex items-center">

@@ -13,7 +13,7 @@ export default function TeamWrapper({ teams }: TeamWrapperProps) {
   return (
     <>
       <TeamsCategory title="NBA teams" teams={nbaTeams} />
-      <LineSeperator />
+      <LineSeperator classes="my-6" />
       <TeamsCategory title="Other teams" teams={otherTeams} />
     </>
   );

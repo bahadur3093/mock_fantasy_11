@@ -26,7 +26,7 @@ export interface IPlayer {
   lastname: string;
 }
 
-export interface ITeam {
+interface ITeam {
   id: number;
   name: string;
   nickname: string;
@@ -34,7 +34,7 @@ export interface ITeam {
   logo: string;
 }
 
-export interface IGame {
+interface IGame {
   id: number;
 }
 

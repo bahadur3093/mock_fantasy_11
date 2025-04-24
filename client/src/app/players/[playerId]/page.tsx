@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 import { rapidBaseUrl } from "../../../../utils/urls";
 import { getCachedOrFreshData } from "../../../../utils/cacheApi";
 import { Player } from "../../../../models/Player.model";
 import PlayerDetailsCard from "@/app/components/cards/PlayerDetailsCard/PlayerDetailsCard";
-import { useParams } from "next/navigation";
 import Loader from "@/app/components/common/Loader/Loader";
 
 export default function PlayersDetails() {
