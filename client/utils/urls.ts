@@ -17,4 +17,7 @@ export const rapidBaseUrl = {
     byId: `${RAPID_API_BASE_URL}/games?id=`,
     bySeason: `${RAPID_API_BASE_URL}/games?season=`,
   },
+  standings: {
+    byLeagueAndSeason: `${RAPID_API_BASE_URL}/standings`,
+  },
 };
