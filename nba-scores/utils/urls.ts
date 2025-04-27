@@ -1,5 +1,7 @@
 export const BASE_URL = "https://api-nba-v1.p.rapidapi.com";
 export const LOCAL_BLOG_URL = "http://localhost:5001/api";
+export const DEPLOYED_BLOG_URL = "https://mock-fantasy-11-server-git-fe-44b64d-bahadurs-projects-e1c84fde.vercel.app/api";
+
 
 export const Urls = {
   team: {
@@ -11,8 +13,8 @@ export const Urls = {
   },
   blog: {
     users: {
-      getAll: `${LOCAL_BLOG_URL}/users`,
-      getById: `${LOCAL_BLOG_URL}/users?id=`,
+      getAll: `${DEPLOYED_BLOG_URL}/users`,
+      getById: `${DEPLOYED_BLOG_URL}/users?id=`,
     }
   }
 };

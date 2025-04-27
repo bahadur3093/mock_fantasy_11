@@ -7,7 +7,9 @@ const apiLocal = axios.create({
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization"
   },
 });
 
