@@ -1,4 +1,5 @@
 export const BASE_URL = "https://api-nba-v1.p.rapidapi.com";
+export const LOCAL_BLOG_URL = "http://localhost:5001/api";
 
 export const Urls = {
   team: {
@@ -7,5 +8,11 @@ export const Urls = {
   },
   player: {
     byTeamIdAndSeason: `${BASE_URL}/players`
+  },
+  blog: {
+    users: {
+      getAll: `${LOCAL_BLOG_URL}/users`,
+      getById: `${LOCAL_BLOG_URL}/users?id=`,
+    }
   }
 };

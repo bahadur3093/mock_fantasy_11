@@ -1,5 +1,5 @@
 import { useNavigation, NavigationProp } from "@react-navigation/native";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../navigation/navigation";
@@ -28,6 +28,13 @@ const Header = () => {
         onPress={() => navigation.navigate("seasons")}
       >
         <Ionicons name="calendar" size={48} color="black" />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        className="flex items-center"
+        onPress={() => navigation.navigate("blog")}
+      >
+        <Ionicons name="newspaper" size={48} color="black" />
       </TouchableOpacity>
     </View>
   );

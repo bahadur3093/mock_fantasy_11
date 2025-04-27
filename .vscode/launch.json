@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug Express App",
+        "skipFiles": ["<node_internals>/**"],
+        "program": "${workspaceFolder}/src/server.ts",  // <-- point to your server start file
+        "outFiles": ["${workspaceFolder}/dist/**/*.js"], // <-- if you compile to dist/
+        "runtimeArgs": [
+          "-r",
+          "ts-node/register",
+          "-r",
+          "tsconfig-paths/register"
+        ],
+        "env": {
+          "NODE_ENV": "development"
+        }
+      }
+    ]
+  }
+  

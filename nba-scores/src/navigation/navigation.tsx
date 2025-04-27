@@ -7,12 +7,14 @@ import PlayersPage from "../pages/players/players";
 import SeasonsPage from "../pages/seasons/seasons";
 import Layout from "../components/Layout";
 import TeamDetails from "../pages/teams/team-details";
+import BlogPage from "../pages/blog/blog";
 
 export type RootStackParamList = {
   teams: undefined;
   teamDetails: undefined
   players: undefined;
   seasons: undefined;
+  blog: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -32,6 +34,7 @@ const Navigation = () => {
             <Stack.Screen name="teamDetails" component={TeamDetails} />
             <Stack.Screen name="players" component={PlayersPage} />
             <Stack.Screen name="seasons" component={SeasonsPage} />
+            <Stack.Screen name="blog" component={BlogPage} />
           </Stack.Navigator>
         </Layout>
       </NavigationContainer>
